@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useRef } from 'react';
+import { usePathname } from 'next/navigation';
 
 interface NavigationPillProps {
   className?: string;
@@ -9,7 +10,11 @@ interface NavigationPillProps {
 export default function NavigationPill({ className = '' }: NavigationPillProps) {
   const [isQueryMode, setIsQueryMode] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
-
+  const pathname = usePathname();
+  
+  // Check if we're in an individual project view
+  const isProjectView = pathname.match(/^\/projects\/[^\/]+$/);
+  
   const handleAddClick = (e: React.MouseEvent) => {
     e.preventDefault();
     fileInputRef.current?.click();
@@ -38,7 +43,7 @@ export default function NavigationPill({ className = '' }: NavigationPillProps) 
     <div className={`fixed bottom-6 left-1/2 -translate-x-1/2 w-1/2 max-w-xl ${className}`}>
       <div className="h-32 bg-[#f8f4e9] dark:bg-[#32302f] border-2 border-[#d7c4a1] dark:border-[#504945] rounded-3xl p-4 flex flex-col shadow-lg">
         <input 
-          placeholder="ask anything (new project)" 
+          placeholder={isProjectView ? "ask anything about this project" : "ask anything (new project)"} 
           className="text-lg mb-4 bg-transparent border-none focus:outline-none text-[#3c3836] dark:text-[#ebdbb2] placeholder-[#7c6f64] dark:placeholder-[#a89984]" 
         />
         <div className="flex mt-auto items-center">
