@@ -9,9 +9,11 @@ export default function ProjectsLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="relative">
+    <div className="relative h-screen w-full overflow-hidden">
       <ProfileButton />
-      {children}
+      <main className="h-full w-full">
+        {children}
+      </main>
       <NavigationPill />
     </div>
   );

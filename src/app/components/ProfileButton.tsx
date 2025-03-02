@@ -11,7 +11,7 @@ export default function ProfileButton({ className = '' }: ProfileButtonProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className={`fixed top-6 right-6 ${className}`}>
+    <div className={`fixed top-6 right-6 z-50 ${className}`}>
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="w-10 h-10 rounded-full bg-[#f8f4e9] dark:bg-[#32302f] border border-[#d7c4a1] dark:border-[#504945] shadow-lg flex items-center justify-center hover:bg-[#ebdbb2] dark:hover:bg-[#3c3836] transition-colors"
